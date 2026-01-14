@@ -1,4 +1,6 @@
-﻿namespace LoginScreen
+﻿using System.Reflection.PortableExecutable;
+
+namespace LoginScreen
 {
     public partial class MainPage : ContentPage
     {
@@ -7,18 +9,10 @@
         public MainPage()
         {
             InitializeComponent();
+            Header.MenuTapped += OnHeaderMenuTapped;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            ThemeIcon.Text = Application.Current.UserAppTheme == AppTheme.Dark
-                ? "\uE51C"
-                : "\uE518";
-        }
-
-        private async void OnMenuTapped(object sender, EventArgs e)
+        private async void OnHeaderMenuTapped(object? sender, EventArgs e)
         {
             if (!isSidebarOpen)
             {
@@ -31,19 +25,6 @@
                 isSidebarOpen = false;
             }
         }
-
-        private void OnThemeToggle(object sender, EventArgs e)
-        {
-            if (Application.Current.UserAppTheme == AppTheme.Dark)
-            {
-                Application.Current.UserAppTheme = AppTheme.Light;
-                ThemeIcon.Text = "\uE518"; // light_mode
-            }
-            else
-            {
-                Application.Current.UserAppTheme = AppTheme.Dark;
-                ThemeIcon.Text = "\uE51C"; // dark_mode
-            }
-        }
     }
+
 }

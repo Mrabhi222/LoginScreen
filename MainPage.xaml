@@ -1,95 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:shared="clr-namespace:LoginScreen.Views.Shared"
              x:Class="LoginScreen.MainPage">
 
     <!-- ROOT GRID -->
     <Grid RowDefinitions="Auto,*">
 
         <!-- HEADER -->
-        <Grid Grid.Row="0"
-              ColumnDefinitions="Auto,*,Auto"
-              ColumnSpacing="10"
-              Padding="10"
-              BackgroundColor="WhiteSmoke">
+        <shared:AppHeader x:Name="Header" Grid.Row="0"/>
 
-            <!-- LEFT -->
-            <Label Grid.Column="0"
-                   Text="Employee Login"
-                   FontSize="20" />
-
-            <!-- CENTER -->
-            <Label Grid.Column="1"
-                   Text="Micrologic"
-                   FontSize="20"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
-
-            <!-- RIGHT -->
-            <HorizontalStackLayout Spacing="16"
-                       VerticalOptions="Center" Grid.Column="2">
-
-                <!-- Lock -->
-                <Label Text="&#xE897;"
-           FontFamily="MaterialIcons"
-           FontSize="22"/>
-
-                <!-- Theme -->
-                <Label x:Name="ThemeIcon"
-       Text="&#xE518;"   
-                    FontFamily="MaterialIcons"
-       FontSize="22">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnThemeToggle"/>
-                    </Label.GestureRecognizers>
-                </Label>
-
-                <!-- Menu -->
-                <Label Text="&#xE5D2;"
-           FontFamily="MaterialIcons"
-           FontSize="24">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnMenuTapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
-
-                <!-- Date / Time -->
-                <Label Text="&#xE8B5;"
-           FontFamily="MaterialIcons"
-           FontSize="22"/>
-
-            </HorizontalStackLayout>
-
-        </Grid>
-
-        <!-- MAIN CONTENT -->
+        <!-- PAGE CONTENT -->
         <Grid Grid.Row="1">
             <Label Text="Login screen"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
-        </Grid>
 
-        <!-- RIGHT SIDEBAR (OVERLAY) -->
-        <Grid Grid.Row="1" x:Name="SideBar"
-              
+            <Grid x:Name="SideBar"
               WidthRequest="260"
               BackgroundColor="#F5F6F8"
               HorizontalOptions="End"
               TranslationX="260"
               ZIndex="10">
+                <!-- buttons -->
 
-            <VerticalStackLayout Padding="10" Spacing="10">
-                <Button Text="User Profile" TextColor="Black" BackgroundColor="Transparent"/>
-                <Button Text="POS System" TextColor="Black" BackgroundColor="Transparent" />
-                <Button Text="Reports" TextColor="Black" BackgroundColor="Transparent"/>
-                <Button Text="Settings" TextColor="Black" BackgroundColor="Transparent" />
-                <Button Text="Shift Management" TextColor="Black" BackgroundColor="Transparent"/>
-                <Button Text="Language" TextColor="Black" BackgroundColor="Transparent"/>
 
-                <Button Text="Close Shift / Logout"
-                        BackgroundColor="#2D74FF"
-                        TextColor="White"/>
-            </VerticalStackLayout>
+                <VerticalStackLayout Padding="10" Spacing="10">
+                    <Button Text="User Profile" TextColor="Black" BackgroundColor="Transparent"/>
+                    <Button Text="POS System" TextColor="Black" BackgroundColor="Transparent" />
+                    <Button Text="Reports" TextColor="Black" BackgroundColor="Transparent"/>
+                    <Button Text="Settings" TextColor="Black" BackgroundColor="Transparent" />
+                    <Button Text="Shift Management" TextColor="Black" BackgroundColor="Transparent"/>
+                    <Button Text="Language" TextColor="Black" BackgroundColor="Transparent"/>
+
+                    <Button Text="Close Shift / Logout"
+                BackgroundColor="#2D74FF"
+                TextColor="White"/>
+                </VerticalStackLayout>
+            </Grid>
+
         </Grid>
 
     </Grid>
