@@ -1,4 +1,5 @@
-﻿using System.Reflection.PortableExecutable;
+﻿using LoginScreen.ViewModel;
+using System.Reflection.PortableExecutable;
 
 namespace LoginScreen
 {
@@ -9,7 +10,8 @@ namespace LoginScreen
         public MainPage()
         {
             InitializeComponent();
-            Header.MenuTapped += OnHeaderMenuTapped;
+            BindingContext = new LoginViewModel();
+            //Header.MenuTapped += OnHeaderMenuTapped;
         }
 
         private async void OnHeaderMenuTapped(object? sender, EventArgs e)

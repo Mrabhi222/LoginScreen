@@ -3,43 +3,112 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:shared="clr-namespace:LoginScreen.Views.Shared"
              x:Class="LoginScreen.MainPage">
+    
+    
 
     <!-- ROOT GRID -->
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*,Auto,Auto,Auto,Auto">
 
         <!-- HEADER -->
-        <shared:AppHeader x:Name="Header" Grid.Row="0"/>
+        <shared:AppHeader Grid.Row="0" />
 
-        <!-- PAGE CONTENT -->
+        <!-- MAIN CONTENT -->
         <Grid Grid.Row="1">
-            <Label Text="Login screen"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
 
+            <!-- SIDEBAR -->
             <Grid x:Name="SideBar"
-              WidthRequest="260"
-              BackgroundColor="{AppThemeBinding Light=#F5F6F8,Dark=#FF0000}"
-              HorizontalOptions="End"
-              TranslationX="260"
-              ZIndex="10">
-                <!-- buttons -->
-
+                  WidthRequest="260"
+                  BackgroundColor="{AppThemeBinding Light=#F5F6F8, Dark=#2B2B2B}"
+                  HorizontalOptions="End"
+                  TranslationX="260"
+                  ZIndex="10">
 
                 <VerticalStackLayout Padding="10" Spacing="10">
-                    <Button Text="User Profile" TextColor="Black" BackgroundColor="Transparent"/>
-                    <Button Text="POS System" TextColor="Black" BackgroundColor="Transparent" />
-                    <Button Text="Reports" TextColor="Black" BackgroundColor="Transparent"/>
-                    <Button Text="Settings" TextColor="Black" BackgroundColor="Transparent" />
-                    <Button Text="Shift Management" TextColor="Black" BackgroundColor="Transparent"/>
-                    <Button Text="Language" TextColor="Black" BackgroundColor="Transparent"/>
+                    <Button Text="User Profile" BackgroundColor="Transparent"/>
+                    <Button Text="POS System" BackgroundColor="Transparent"/>
+                    <Button Text="Reports" BackgroundColor="Transparent"/>
+                    <Button Text="Settings" BackgroundColor="Transparent"/>
+                    <Button Text="Shift Management" BackgroundColor="Transparent"/>
+                    <Button Text="Language" BackgroundColor="Transparent"/>
 
                     <Button Text="Close Shift / Logout"
-                BackgroundColor="#2D74FF"
-                TextColor="White"/>
+                            BackgroundColor="#2D74FF"
+                            TextColor="White"/>
                 </VerticalStackLayout>
             </Grid>
 
+            <!-- CENTER CONTENT -->
+         
+                
+                <!-- KEYPAD (NO EXTRA BINDINGS) -->
+
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                <shared:Keypad Grid.Row="1"/>
+
+            </VerticalStackLayout>
+
+
         </Grid>
+
+        <Label Text="User Login Method"
+       Grid.Row="2"
+       Grid.ColumnSpan="3"
+       HorizontalOptions="Center"
+       FontAttributes="Bold"
+       Margin="0,10"/>
+
+        <Grid Grid.Row="3"
+      ColumnDefinitions="Auto,Auto,Auto"
+      ColumnSpacing="30"
+      HorizontalOptions="Center">
+
+            <!-- USER CODE -->
+            <Border
+        Stroke="#D0D0D0"
+        StrokeThickness="1"
+        BackgroundColor="Transparent"
+        Padding="14,8"
+        >
+                <Label
+            Text="User Code"
+            FontSize="Body"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"/>
+            </Border>
+
+            <!-- FINGERPRINT -->
+            <Border
+        Grid.Column="1"
+        Stroke="#D0D0D0"
+        StrokeThickness="1"
+        BackgroundColor="Transparent"
+        Padding="14,8"
+      >
+                <Label
+            Text="FINGERPRINT"
+            FontSize="Body"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"/>
+            </Border>
+
+            <!-- ACCESS CARD -->
+            <Border
+        Grid.Column="2"
+        Stroke="#D0D0D0"
+        StrokeThickness="1"
+        BackgroundColor="Transparent"
+        Padding="14,8"
+       >
+                <Label
+            Text="ACCESS CARD"
+            FontSize="Body"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"/>
+            </Border>
+
+        </Grid>
+
 
     </Grid>
 </ContentPage>
