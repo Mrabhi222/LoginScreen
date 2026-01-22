@@ -3,112 +3,156 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:shared="clr-namespace:LoginScreen.Views.Shared"
              x:Class="LoginScreen.MainPage">
-    
-    
 
-    <!-- ROOT GRID -->
-    <Grid RowDefinitions="Auto,*,Auto,Auto,Auto,Auto">
+    <!-- ================= RESOURCES ================= -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="LoginOptionBorderStyle" TargetType="Border">
+                <Setter Property="Stroke" Value="#D0D0D0"/>
+                <Setter Property="StrokeThickness" Value="1"/>
+                <Setter Property="Padding" Value="14,8"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="LoginOptionLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Body"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                
+            </Style>
+
+          
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- ================= ROOT GRID ================= -->
+    <Grid RowDefinitions="Auto,*,Auto,Auto">
 
         <!-- HEADER -->
-        <shared:AppHeader Grid.Row="0" />
+        <shared:AppHeader Grid.Row="0"/>
 
-        <!-- MAIN CONTENT -->
-        <Grid Grid.Row="1">
+        <!-- ================= MAIN CONTENT ================= -->
+        <Grid Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
 
-            <!-- SIDEBAR -->
-            <Grid x:Name="SideBar"
-                  WidthRequest="260"
-                  BackgroundColor="{AppThemeBinding Light=#F5F6F8, Dark=#2B2B2B}"
-                  HorizontalOptions="End"
-                  TranslationX="260"
-                  ZIndex="10">
+            <!-- FIXED LOGIN BOX -->
+            <Border 
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="20"
+                    WidthRequest="370"
+                    HeightRequest="450"
+                    BackgroundColor="{AppThemeBinding Light=Transparent, Dark=#1E1E1E}">
 
-                <VerticalStackLayout Padding="10" Spacing="10">
-                    <Button Text="User Profile" BackgroundColor="Transparent"/>
-                    <Button Text="POS System" BackgroundColor="Transparent"/>
-                    <Button Text="Reports" BackgroundColor="Transparent"/>
-                    <Button Text="Settings" BackgroundColor="Transparent"/>
-                    <Button Text="Shift Management" BackgroundColor="Transparent"/>
-                    <Button Text="Language" BackgroundColor="Transparent"/>
+                <Grid>
 
-                    <Button Text="Close Shift / Logout"
-                            BackgroundColor="#2D74FF"
-                            TextColor="White"/>
-                </VerticalStackLayout>
-            </Grid>
+                    <!-- ===== USER CODE (NUMPAD) ===== -->
+                    <VerticalStackLayout
+                        Spacing="10"
+                        IsVisible="{Binding IsNumpadVisible}">
 
-            <!-- CENTER CONTENT -->
-         
-                
-                <!-- KEYPAD (NO EXTRA BINDINGS) -->
+                        <Entry
+                            Text="{Binding Pin}"
+                            Placeholder="Enter your User Code"
+                            IsReadOnly="True"
+                            HeightRequest="20"
+                           BackgroundColor="{AppThemeBinding Light=Transparent, Dark=#1E1E1E}"
+                            VerticalTextAlignment="Center"/>
 
-            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <shared:Keypad />
+                    </VerticalStackLayout>
 
-                <shared:Keypad Grid.Row="1"/>
+                    <!-- ===== FINGERPRINT ===== -->
+                    <VerticalStackLayout
+                        IsVisible="{Binding IsGifVisible}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Spacing="16">
 
-            </VerticalStackLayout>
+                        <Label Text="Place your finger on the scanner"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
 
+                        <Image Source="fingerprint.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Opacity="0.8"/>
+                    </VerticalStackLayout>
 
+                    <!-- ===== ACCESS CARD ===== -->
+                    <VerticalStackLayout
+                        IsVisible="{Binding IsAccessCard}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Spacing="16"
+                      >
+
+                        <Label Text="Please swipe your access card"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+
+                        <Image Source="access_card.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Opacity="0.8"/>
+                    </VerticalStackLayout>
+
+                </Grid>
+            </Border>
         </Grid>
 
-        <Label Text="User Login Method"
-       Grid.Row="2"
-       Grid.ColumnSpan="3"
-       HorizontalOptions="Center"
-       FontAttributes="Bold"
-       Margin="0,10"/>
+        <!-- ================= TITLE ================= -->
+        <Label Grid.Row="2"
+               Text="User Login Method"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0,10"/>
 
+        <!-- ================= LOGIN OPTIONS ================= -->
         <Grid Grid.Row="3"
-      ColumnDefinitions="Auto,Auto,Auto"
-      ColumnSpacing="30"
-      HorizontalOptions="Center">
+              ColumnDefinitions="Auto,Auto,Auto"
+              ColumnSpacing="30"
+              HorizontalOptions="Center">
 
             <!-- USER CODE -->
-            <Border
-        Stroke="#D0D0D0"
-        StrokeThickness="1"
-        BackgroundColor="Transparent"
-        Padding="14,8"
-        >
-                <Label
-            Text="User Code"
-            FontSize="Body"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"/>
+            <Border Style="{StaticResource LoginOptionBorderStyle}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding SelectUserCodeCommand}" />
+                </Border.GestureRecognizers>
+                <Label Text="User Code"
+                       Style="{StaticResource LoginOptionLabelStyle}"/>
             </Border>
 
             <!-- FINGERPRINT -->
-            <Border
-        Grid.Column="1"
-        Stroke="#D0D0D0"
-        StrokeThickness="1"
-        BackgroundColor="Transparent"
-        Padding="14,8"
-      >
-                <Label
-            Text="FINGERPRINT"
-            FontSize="Body"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"/>
+            <Border Grid.Column="1"
+                    Style="{StaticResource LoginOptionBorderStyle}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding SelectFingerprintCommand}" />
+                </Border.GestureRecognizers>
+                <Label Text="FINGERPRINT"
+                       Style="{StaticResource LoginOptionLabelStyle}"/>
             </Border>
 
             <!-- ACCESS CARD -->
-            <Border
-        Grid.Column="2"
-        Stroke="#D0D0D0"
-        StrokeThickness="1"
-        BackgroundColor="Transparent"
-        Padding="14,8"
-       >
-                <Label
-            Text="ACCESS CARD"
-            FontSize="Body"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"/>
+            <Border Grid.Column="2"
+                    Style="{StaticResource LoginOptionBorderStyle}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding SelectAccessCardCommand}" />
+                </Border.GestureRecognizers>
+                <Label Text="ACCESS CARD"
+                       Style="{StaticResource LoginOptionLabelStyle}"/>
             </Border>
 
         </Grid>
-
 
     </Grid>
 </ContentPage>

@@ -1,51 +1,191 @@
-<ContentView
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="LoginScreen.Views.Shared.Keypad">
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoginScreen.Views.Shared.Keypad">
 
-    <Border Stroke="#DADADA"
-            Padding="16"
-            StrokeShape="RoundRectangle 16">
+    <VerticalStackLayout Spacing="15" Padding="20">
 
-        <Grid RowDefinitions="*,*,*,*,Auto,Auto"
+        <!-- Header with Icon and Text -->
+  
+
+        <!-- Keypad Grid -->
+        <Grid RowDefinitions="*,*,*,*"
               ColumnDefinitions="*,*,*"
               RowSpacing="10"
-              ColumnSpacing="10">
+              ColumnSpacing="10"
+              HeightRequest="220">
 
-            <!-- Display -->
-            <Entry
-              Grid.Row="0"
-                Grid.ColumnSpan="3"
-                Text="{Binding Pin}"
-                Placeholder="Enter your User Code to Login"
-               IsReadOnly="True"
-               FontSize="18"
-             WidthRequest="300" 
-             VerticalTextAlignment="Center"
-             BackgroundColor="#F2F2F2"
-            />
+            <!-- Row 1: 1, 2, 3 -->
+            <Border Grid.Row="0" Grid.Column="0"
+                    BackgroundColor="{AppThemeBinding Light=#F8F8FF, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="1" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="1" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="1"    />
+            </Border>
 
+            <Border Grid.Row="0" Grid.Column="1"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="2" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="2" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
 
-            <!-- Numbers -->
-            <Button Text="1" Grid.Row="1" Command="{Binding KeyPressedCommand}" CommandParameter="1"/>
-            <Button Text="2" Grid.Row="1"     Grid.Column="1" Command="{Binding KeyPressedCommand}" CommandParameter="2"/>
-            <Button Text="3" Grid.Row="1"   Grid.Column="2" Command="{Binding KeyPressedCommand}" CommandParameter="3"/>
+            <Border Grid.Row="0" Grid.Column="2"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="3" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="3" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
 
-            <Button Text="4" Grid.Row="2" Command="{Binding KeyPressedCommand}" CommandParameter="4"/>
-            <Button Text="5" Grid.Row="2" Grid.Column="1" Command="{Binding KeyPressedCommand}" CommandParameter="5"/>
-            <Button Text="6" Grid.Row="2" Grid.Column="2" Command="{Binding KeyPressedCommand}" CommandParameter="6"/>
+            <!-- Row 2: 4, 5, 6 -->
+            <Border Grid.Row="1" Grid.Column="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="4" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="4" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
 
-            <Button Text="7" Grid.Row="3" Command="{Binding KeyPressedCommand}" CommandParameter="7"/>
-            <Button Text="8" Grid.Row="3" Grid.Column="1" Command="{Binding KeyPressedCommand}" CommandParameter="8"/>
-            <Button Text="9" Grid.Row="3" Grid.Column="2" Command="{Binding KeyPressedCommand}" CommandParameter="9"/>
+            <Border Grid.Row="1" Grid.Column="1"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="5" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="5" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
 
-            <Button Text="0" Grid.Row="4" Grid.Column="1" Command="{Binding KeyPressedCommand}" CommandParameter="0"/>
-            <Button Text="⌫" Grid.Row="4" Grid.Column="2" Command="{Binding KeyPressedCommand}" CommandParameter="Backspace"/>
+            <Border Grid.Row="1" Grid.Column="2"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="6" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="6" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
 
-            <Button Text="Login"
-                    Grid.Row="5"
-                    Grid.ColumnSpan="3"
-                    Command="{Binding LoginCommand}"/>
+            <!-- Row 3: 7, 8, 9 -->
+            <Border Grid.Row="2" Grid.Column="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="7" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="7" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="1"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="8" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="8" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="2"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="9" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="9" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
+
+            <!-- Row 4: Empty, 0, Backspace -->
+            <Border Grid.Row="3" Grid.Column="1"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="0" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="0" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="2"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}"
+                    Stroke="{AppThemeBinding Light=#E0E0E0, Dark=#3C3C3C}"
+                    StrokeThickness="1"
+                    Padding="0">
+                <Button Text="⌫" 
+                        Command="{Binding KeyPressedCommand}" 
+                        CommandParameter="Backspace" 
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        FontSize="24"
+                        BorderWidth="0"/>
+            </Border>
+
         </Grid>
-    </Border>
+
+        <!-- Login Button -->
+        <Button Text=" Login"
+                Command="{Binding LoginCommand}"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                FontSize="18"
+                FontAttributes="Bold"
+                HeightRequest="55"
+                CornerRadius="10"
+                Margin="0,10,0,0"/>
+
+    </VerticalStackLayout>
+
 </ContentView>
